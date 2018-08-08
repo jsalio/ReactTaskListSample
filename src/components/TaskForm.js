@@ -39,7 +39,7 @@ class TaskForm extends Component{
                         <input type="text" name="description" className="form-control" placeholder="Description"  onChange={this.handlerChange}/>
                     </div>
                     <div className="form-group">
-                       <select name="priority" className="form-group" onChange={this.handlerChange}>
+                       <select name="priority" className="form-control" onChange={this.handlerChange}>
                             <option>low</option>
                             <option>medium</option>
                             <option>high</option>
