@@ -23,12 +23,19 @@ class TaskForm extends Component{
     handlerSubmit(e){
         e.preventDefault();
         this.props.onAddTask(this.state);
+        this.setState = {
+            title:'',
+            responsible:'',
+            description:'',
+            priority:'low'
+        };
+        document.getElementById('taskForm').reset();
     }
 
     render() {
         return (
             <div className="card">
-                <form className="card-body" onSubmit={this.handlerSubmit}>
+                <form className="card-body" onSubmit={this.handlerSubmit} id="taskForm">
                     <div className="form-group">
                         <input type="text" name="title" className="form-control" placeholder="Title" onChange={this.handlerChange}/>
                     </div>
@@ -48,7 +55,7 @@ class TaskForm extends Component{
                     <button type="submit" className="btn btn-primary">Enviar</button>
                 </form>
             </div>
-        ) 
+        )
     }
 }
 
