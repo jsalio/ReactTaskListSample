@@ -4,6 +4,7 @@ import './App.css';
 
 import { tasks } from './Task.json';
 import TaskForm from './components/TaskForm';
+import TaskCard from './components/TaskCard';
 
 class App extends Component {
   constructor() {
@@ -11,21 +12,21 @@ class App extends Component {
     this.state = {
       tasks
     }
-    this.handleAddTask= this.handleAddTask.bind(this);
+    this.handleAddTask = this.handleAddTask.bind(this);
   }
 
-  handleAddTask(task){
+  handleAddTask(task) {
     this.setState({
-     tasks: [...this.state.tasks,task]
+      tasks: [...this.state.tasks, task]
     })
   }
 
-  removeTodo(index){
-    if (window.confirm('are you sure to delete its?')){
+  removeTodo(index) {
+    if (window.confirm('are you sure to delete its?')) {
       this.setState({
-        tasks:this.state.tasks.filter((e, i) => {
+        tasks: this.state.tasks.filter((e, i) => {
           return i !== index
-        } )
+        })
       })
     }
   }
@@ -33,25 +34,7 @@ class App extends Component {
   render() {
     const tasks = this.state.tasks.map((task, i) => {
       return (
-        <div className="col-md-4" key={i}>
-          <div className="card mt-4">
-            <div className="card-header">
-              <h4>{task.title}</h4>
-              <span className="badge badge-pill badge-danger ml-2">
-                {task.priority}
-              </span>
-            </div>
-            <div className="card-body">
-              <p>{task.description}</p>
-              <p><mark>{task.resposible}</mark></p>
-            </div>
-            <div className="card-footer">
-                <button className="btn btn-danger"
-                onClick={this.removeTodo.bind(this, i)}
-                >Delete</button>
-            </div>
-          </div>
-        </div>
+        <TaskCard task={task} index={i} onDeleteCard={this.removeTodo.bind(this)} />
       )
     });
 
@@ -69,7 +52,8 @@ class App extends Component {
           <div className="row mt-4">
             <div className="col-md-3">
               <img src={logo} className="App-logo" alt="logo" />
-              <TaskForm onAddTask={this.handleAddTask}/>
+              {/* <TaskCard task={this.state.tasks[0]} i={0}/>  */}
+              <TaskForm onAddTask={this.handleAddTask} />
             </div>
             <div className="col-md-9">
               <div className="row">
